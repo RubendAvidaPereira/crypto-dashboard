@@ -18,6 +18,9 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { ChartModule } from 'primeng/chart';
 import { TabViewModule } from 'primeng/tabview';
+import { KnobModule } from 'primeng/knob';
+import { FormsModule } from '@angular/forms';
+import { TimelineModule } from 'primeng/timeline';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { TabViewModule } from 'primeng/tabview';
     CardModule,
     TableModule,
     ChartModule,
-    TabViewModule
+    TabViewModule,
+    KnobModule,
+    FormsModule,
+    TimelineModule
   ],
   providers: [],
   bootstrap: [AppComponent]

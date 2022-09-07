@@ -1,1 +1,45 @@
-<p>bitcoin works!</p>
+<div class="px-3 py-4 md:px-5 lg:px-7">
+
+    <!-- Knobs with % changes on price for 1, 7, 30 and 265 days -->
+    <div class="grid text-center">
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 1 Day</h3>
+            <p-knob [(ngModel)]="price_change_pct_1d" [readonly]="true" [min]="-75" [max]="75" [size]="125"></p-knob>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 7 Days</h3>
+            <p-knob [(ngModel)]="price_change_pct_7d" [readonly]="true" [min]="-75" [max]="75" [size]="125"></p-knob>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 30 Days</h3>
+            <p-knob [(ngModel)]="price_change_pct_30d" [readonly]="true" [min]="-75" [max]="75" [size]="125"></p-knob>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 365 Days</h3>
+            <p-knob [(ngModel)]="price_change_pct_365d" [readonly]="true" [min]="-75" [max]="75" [size]="125"></p-knob>
+        </div>
+    </div>
+
+    <!-- + Info in Bitcoin data -->
+    <div class="grid py-3">
+        <div class="col-12 md:col-9 lg:col-6">
+            <div class="surface-card shadow-2 border-round p-3">
+                
+                <div class="grid">
+                    <div class="col-4 text-center">
+                        <img alt="Bitcoin Logo" class="w-6 h-6" src="{{ btcData[0].logo_url }}">
+                        <h3>Bitcoin Information</h3>
+                        <h5 class="text-700">Prices & Changes</h5>
+                    </div>
+                    <div class="col-8">
+                        
+                    </div>
+                </div>
+
+            </div>
+                
+        </div>
+
+    </div>
+
+</div>

@@ -289,7 +289,6 @@ export class DashboardComponent implements OnInit {
       this.getLatestData()
     }, 3000)
 
-
     setTimeout(() => {
       this.getETHData()
     }, 4500)
@@ -313,7 +312,5 @@ export class DashboardComponent implements OnInit {
       this.drawADAChart()
       this.drawDOTChart()
     }, 10000)
-
   }
-
 }
