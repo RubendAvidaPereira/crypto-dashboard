@@ -59,7 +59,7 @@
                                 <th>High</th>
                                 <th>Circulating Supply</th>
                                 <th>Max Supply</th>
-                                <th>Price Change %</th>
+                                <th>Price Change</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-latestData>
@@ -69,7 +69,7 @@
                                 <td>{{ latestData.high | currency:"EUR" }}</td>
                                 <td>{{ latestData.circulating_supply }}</td>
 
-                                <td *ngIf="!latestData.max_supply; else elseMaxSupply">
+                                <td class="flex justify-content-center" *ngIf="!latestData.max_supply; else elseMaxSupply">
                                     <i class="fa-solid fa-infinity"></i>
                                 </td>
                                 <ng-template #elseMaxSupply>
@@ -79,10 +79,12 @@
                                 </ng-template>
 
                                 <td *ngIf="latestData['1d'].price_change_pct <= 0; else elsePriceChangePct"
-                                [ngStyle]="{ color:'var(--red-500)' }">{{ latestData["1d"].price_change_pct }}</td>
+                                [ngStyle]="{ color:'var(--red-500)' }">
+                                    {{ latestData["1d"].price_change_pct * 100 | number:'1.0-3' }}%
+                                </td>
                                 <ng-template #elsePriceChangePct>
                                     <td [ngStyle]="{ color:'var(--green-500)' }">
-                                        &nbsp;{{ latestData["1d"].price_change_pct }}
+                                        {{ latestData["1d"].price_change_pct * 100 | number:'1.0-3' }}%
                                     </td>
                                 </ng-template>
                             </tr>
