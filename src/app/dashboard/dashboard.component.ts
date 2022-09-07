@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   // Theme Boolean Check State
   // If false, theme is light
-  checkTheme: boolean = false
+  checkTheme: boolean = true
 
   // General Data
   lastDayData: any
@@ -231,7 +231,12 @@ export class DashboardComponent implements OnInit {
   // Change Theme in Dashboard
   changeTheme(theme: string) {
     this.themeService.switchTheme(theme);
-    this.checkTheme = !this.checkTheme
+    if (theme === 'arya-orange') {
+      this.checkTheme = true
+    }
+    else if (theme === 'saga-orange') {
+      this.checkTheme = false
+    }
   }
 
   constructor(
