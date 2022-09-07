@@ -23,7 +23,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "./node_modules/primeng/resources/themes/arya-orange/theme.css",
+                "bundleName": "arya-orange",
+                "inject": false
+              },
+              {
+                "input": "./node_modules/primeng/resources/themes/saga-orange/theme.css",
+                "bundleName": "saga-orange",
+                "inject": false
+              }
             ],
             "scripts": []
           },
