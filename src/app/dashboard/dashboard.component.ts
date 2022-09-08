@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
   _ethData: any
   _adaData: any
   _dotData: any
+  _marketCapData: any
 
   options: any // Used to define the options on the chart
 
@@ -229,6 +230,29 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  drawMarketCapChart() {
+  this._marketCapData = {
+    labels: ['Bitcoin','Ethereum','Cardano', 'Polkadot'],
+      datasets: [
+        {
+            data: [this.btcData[0].market_cap, this.ethData[0].market_cap, this.adaData[0].market_cap, this.dotData[0].market_cap],
+            backgroundColor: [
+                "#42A5F5",
+                "#66BB6A",
+                "#FFA726",
+                "#9f40e8"
+            ],
+            hoverBackgroundColor: [
+                "#64B5F6",
+                "#81C784",
+                "#FFB74D",
+                '#8434c1'
+            ]
+        }
+      ]
+    }
+  }
+
   // Change Theme in Dashboard
   changeTheme(theme: string) {
     this.themeService.switchTheme(theme);
@@ -291,6 +315,7 @@ export class DashboardComponent implements OnInit {
       this.drawETHChart()
       this.drawADAChart()
       this.drawDOTChart()
+      this.drawMarketCapChart()
       this.show = true
     }, 10000)
   }

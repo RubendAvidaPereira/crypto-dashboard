@@ -19,6 +19,8 @@ export class ThemeChangeService {
     // Light Mode
     if (!this.checkTheme){
       this.options = {
+        responsive: true,
+        maintainAspectRatio: true,
         plugins: {
           legend: {
             labels: {
@@ -40,12 +42,14 @@ export class ThemeChangeService {
               color: "#000000"
             }
           }
-        }
+        },
       }
     }
     // Dark Mode
     else {
       this.options = {
+        responsive: true,
+        maintainAspectRatio: true,
         plugins: {
           legend: {
             labels: {
