@@ -102,22 +102,26 @@
         <div class="col-12 md:col-5 lg:col-5">
             <div class="surface-card shadow-2 p-3 border-round">
                 <h3>Price Changes Charts</h3>
-                <p-tabView>
+                <p-tabView [scrollable]="true">
+                    <!-- Market Cap Chart -->
+                    <p-tabPanel header="Market Cap Data">
+                        <p-chart type="pie" [data]="_marketCapData" [options]="options"></p-chart> 
+                    </p-tabPanel>
                     <!-- BTC Chart -->
                     <p-tabPanel header="Bitcoin Data">
-                        <p-chart type="line" [data]="_btcData" [options]="options"></p-chart>
+                        <p-chart type="line" [data]="_btcData" [options]="options" height="100" width="100"></p-chart>
                     </p-tabPanel>
                     <!-- ETH Chart -->
                     <p-tabPanel header="Ethereum Data" >
-                        <p-chart type="line" [data]="_ethData" [options]="options"></p-chart>
+                        <p-chart type="line" [data]="_ethData" [options]="options" height="100" width="100"></p-chart>
                     </p-tabPanel>
                     <!-- ADA Chart -->
                     <p-tabPanel header="Cardano Data">
-                        <p-chart type="line" [data]="_adaData" [options]="options"></p-chart>    
+                        <p-chart type="line" [data]="_adaData" [options]="options" height="100" width="100"></p-chart>    
                     </p-tabPanel>
                     <!-- DOT Chart -->
                     <p-tabPanel header="Polkadot Data">
-                        <p-chart type="line" [data]="_dotData" [options]="options"></p-chart> 
+                        <p-chart type="line" [data]="_dotData" [options]="options" height="100" width="100"></p-chart> 
                     </p-tabPanel>
                 </p-tabView>
             </div>
