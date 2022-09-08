@@ -1,3 +1,11 @@
 
 <!-- Menu Bar -->
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items" [style]="{ height: '80px'}">
+    <ng-template pTemplate="start">
+        <img src="../../assets/images/cryptocurrencies.png" class="mr-4 ml-2" alt="Logo">
+    </ng-template>
+    <ng-template pTemplate="end">
+        <button pButton icon="pi pi-refresh" onClick="window.location.reload();" 
+        class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only"></button>
+    </ng-template>
+</p-menubar>

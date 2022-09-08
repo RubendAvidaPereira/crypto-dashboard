@@ -1,4 +1,8 @@
-<div class="px-3 py-4 md:px-5 lg:px-7">
+
+<!-- Loader -->
+<p-progressBar *ngIf="!show" class="py-0" [style]="{ height: '0.25rem'}" mode="indeterminate"></p-progressBar>
+
+<div *ngIf="show" class="px-3 py-4 md:px-5 lg:px-7">
 
     <!-- Knobs with % changes on price for 1, 7, 30 and 265 days -->
     <div class="grid text-center">

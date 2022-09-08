@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppMenuComponent } from './app-menu/app-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
+import { EthereumComponent } from './ethereum/ethereum.component';
 
 // Styling with PrimeNG
 import { ButtonModule } from 'primeng/button';
@@ -22,6 +23,7 @@ import { KnobModule } from 'primeng/knob';
 import { FormsModule } from '@angular/forms';
 import { TimelineModule } from 'primeng/timeline';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     AppComponent,
     AppMenuComponent,
     DashboardComponent,
-    BitcoinComponent
+    BitcoinComponent,
+    EthereumComponent
   ],
   imports: [
     // Required Modules
@@ -47,7 +50,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     KnobModule,
     FormsModule,
     TimelineModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

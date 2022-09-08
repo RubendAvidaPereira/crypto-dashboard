@@ -13,10 +13,11 @@ export class BitcoinComponent implements OnInit {
   btcData: any
   
   // Values 
-  price_change_pct_1d: number = 0
-  price_change_pct_7d: number = 0
-  price_change_pct_30d: number = 0
-  price_change_pct_365d: number = 0
+  price_change_pct_1d: string = ''
+  price_change_pct_7d: string = ''
+  price_change_pct_30d: string = ''
+  price_change_pct_365d: string = ''
+  show: boolean = false
 
   // Charts
   _btcData: any
@@ -77,17 +78,13 @@ export class BitcoinComponent implements OnInit {
   // Create values
   createValues() {
     for (let data of this.btcData){
-      this.price_change_pct_1d = data["1d"].price_change_pct * 100
-      parseFloat(this.price_change_pct_1d.toFixed(2))
+      this.price_change_pct_1d = (data["1d"].price_change_pct * 100).toFixed(2)
 
-      this.price_change_pct_7d = data["7d"].price_change_pct * 100
-      parseFloat(this.price_change_pct_7d.toFixed(2))
+      this.price_change_pct_7d = (data["7d"].price_change_pct * 100).toFixed(2)
 
-      this.price_change_pct_30d = data["30d"].price_change_pct * 100
-      parseFloat(this.price_change_pct_30d.toFixed(2))
+      this.price_change_pct_30d = (data["30d"].price_change_pct * 100).toFixed(2)
 
-      this.price_change_pct_365d = data["365d"].price_change_pct * 100
-      parseFloat(this.price_change_pct_365d.toFixed(2))
+      this.price_change_pct_365d = (data["365d"].price_change_pct * 100).toFixed(2)
     }
   }
 
@@ -108,6 +105,7 @@ export class BitcoinComponent implements OnInit {
     // Draw Chart
     setTimeout(() => {
       this.drawBTCChart()
+      this.show = true
     }, 3000)
     
   }

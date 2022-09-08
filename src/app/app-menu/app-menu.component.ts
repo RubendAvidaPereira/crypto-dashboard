@@ -27,7 +27,7 @@ export class AppMenuComponent implements OnInit {
       {
         label: "Ethereum",
         icon: "fa-brands fa-ethereum",
-        // routerLink: "bitcoinInfo"
+        // routerLink: "ethereumInfo"
       },
     ]
   }

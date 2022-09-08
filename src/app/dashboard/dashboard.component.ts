@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   // General Data
   lastDayData: any
   latestData: any
+  show: boolean = false
 
   // Table
   cols: any
@@ -290,6 +291,7 @@ export class DashboardComponent implements OnInit {
       this.drawETHChart()
       this.drawADAChart()
       this.drawDOTChart()
+      this.show = true
     }, 10000)
   }
 }
