@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { TimelineModule } from 'primeng/timeline';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     FormsModule,
     TimelineModule,
     ScrollPanelModule,
-    ProgressBarModule
+    ProgressBarModule,
+    DividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

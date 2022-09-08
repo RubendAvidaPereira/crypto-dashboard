@@ -24,19 +24,24 @@
         </div>
     </div>
 
-    <hr>
+    <p-divider align="right" type="dashed">
+        <div class="inline-flex align-items-center">
+            <i class="fa-brands fa-bitcoin"></i>
+        </div>
+    </p-divider>
 
     <!-- + Info in Bitcoin data -->
-    <div class="grid py-3">
+    <div class="grid py-2">
         <div class="col-12 md:col-9 lg:col-6">
             <div class="surface-card shadow-2 border-round p-3">
                 <div class="grid">
-                    <div class="col-4 text-center">
-                        <img alt="Bitcoin Logo" class="w-6 h-6" src="{{ btcData[0].logo_url }}">
+                    <div class="col-4 text-center pt-8">
+                        <img alt="Bitcoin Logo" class="w-7 h-7" src="{{ btcData[0].logo_url }}">
                         <h3>Bitcoin Information</h3>
                         <h5 class="text-700">Prices & Changes</h5>
                     </div>
-                    <div class="col-8 line-height-4">
+                    <p-divider layout="vertical"></p-divider>
+                    <div class="col-7 line-height-4">
                         <ul class="list-none">
                             <li><strong>Market Cap:</strong> {{ btcData[0].market_cap | currency:"EUR" }}</li>
                             <li><strong>Current Price:</strong> {{ btcData[0].price | currency:"EUR" }}</li>
@@ -46,7 +51,7 @@
                             <li>
                                 <p-scrollPanel [style]="{width: '100%', height: '250px'}">
                                     <!-- 1 Day Information -->
-                                    <h4><strong>1 Day Changes:</strong></h4>
+                                    <h4>1 Day Changes: </h4>
                                     <ul class="list-none">
                                         <!-- Market Cap -->
                                         <li>Market Cap Change (€): {{ btcData[0]["1d"].market_cap_change | currency:"EUR" }}</li>
@@ -86,7 +91,7 @@
                                     </ul>
 
                                     <!-- 7 Days Changes -->
-                                    <h4><strong>7 Days Changes:</strong></h4>
+                                    <h4>7 Days Changes:</h4>
                                     <ul class="list-none">
                                         <!-- Market Cap -->
                                         <li>Market Cap Change (€): {{ btcData[0]["7d"].market_cap_change | currency:"EUR" }}</li>
@@ -126,7 +131,7 @@
                                     </ul>
 
                                     <!-- 30 Days Changes -->
-                                    <h4><strong>30 Days Changes:</strong></h4>
+                                    <h4>30 Days Changes:</h4>
                                     <ul class="list-none">
                                         <!-- Market Cap -->
                                         <li>Market Cap Change (€): {{ btcData[0]["30d"].market_cap_change | currency:"EUR" }}</li>
@@ -166,7 +171,7 @@
                                     </ul>
 
                                     <!-- 365 Days Changes -->
-                                    <h4><strong>365 Days Changes:</strong></h4>
+                                    <h4>365 Days Changes:</h4>
                                     <ul class="list-none">
                                         <!-- Market Cap -->
                                         <li>Market Cap Change (€): {{ btcData[0]["365d"].market_cap_change | currency:"EUR" }}</li>

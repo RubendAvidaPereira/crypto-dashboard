@@ -10,3 +10,9 @@ body .p-component
   margin: 0;
   font-family: "Open Sans", sans-serif;
 }
+
+.p-divider,
+.p-divider-content {
+  background-color: transparent !important;
+  color: #f57c00 !important;
+}
