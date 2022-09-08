@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardServiceService } from '../dashboard-service.service';
-import { ThemeChangeService } from '../theme-change.service';
+import { DashboardServiceService } from './dashboard-service.service';
+import { ThemeChangeService } from '../shared/services/theme-change.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   // Theme Boolean Check State
   // If false, theme is light
-  checkTheme: boolean = true
+  checkTheme: boolean = false
 
   // General Data
   lastDayData: any
@@ -232,10 +232,14 @@ export class DashboardComponent implements OnInit {
   changeTheme(theme: string) {
     this.themeService.switchTheme(theme);
     if (theme === 'arya-orange') {
+      this.themeService.checkTheme = true
       this.checkTheme = true
+      this.themeService.updateChartOptions()
     }
     else if (theme === 'saga-orange') {
+      this.themeService.checkTheme = false
       this.checkTheme = false
+      this.themeService.updateChartOptions()
     }
   }
 
@@ -246,33 +250,8 @@ export class DashboardComponent implements OnInit {
 
   // On Init
   ngOnInit(): void {
-
-    // Charts Options
-    this.options = {
-      plugins: {
-        legend: {
-          labels: {
-            color: "#FFFFFF"
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: "#FFFFFF"
-          },
-        },
-        y: {
-          type: 'linear',
-          display: true,
-          position: 'left',
-          ticks: {
-            color: "#FFFFFF"
-          }
-        }
-      }
-    }
     
+    this.options = this.themeService.options
 
     /**
      *  Sleeping 1,5 Second and 1 second after each consecutive request 

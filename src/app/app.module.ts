@@ -21,6 +21,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { KnobModule } from 'primeng/knob';
 import { FormsModule } from '@angular/forms';
 import { TimelineModule } from 'primeng/timeline';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { TimelineModule } from 'primeng/timeline';
     TabViewModule,
     KnobModule,
     FormsModule,
-    TimelineModule
+    TimelineModule,
+    ScrollPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]
