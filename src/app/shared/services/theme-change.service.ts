@@ -19,7 +19,7 @@ export class ThemeChangeService {
     // Dark Mode
     if (this.checkTheme === false){
       this.options = {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: true,
         plugins: {
           legend: {
@@ -48,7 +48,7 @@ export class ThemeChangeService {
     // Light Mode
     else if (this.checkTheme === true) {
       this.options = {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: true,
         plugins: {
           legend: {
