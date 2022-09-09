@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BitcoinDataService } from './bitcoin-data.service';
+import { CryptoDataService } from './crypto-data.service';
 
-describe('BitcoinDataService', () => {
-  let service: BitcoinDataService;
+describe('CryptoDataService', () => {
+  let service: CryptoDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BitcoinDataService);
+    service = TestBed.inject(CryptoDataService);
   });
 
   it('should be created', () => {

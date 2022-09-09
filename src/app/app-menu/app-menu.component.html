@@ -5,7 +5,19 @@
         <img src="../../assets/images/cryptocurrencies.png" class="mr-4 ml-2" alt="Logo">
     </ng-template>
     <ng-template pTemplate="end">
-        <button pButton icon="pi pi-refresh" onClick="window.location.reload();" 
-        class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only mr-3"></button>
+        <!-- Theme Changer and Refresh page -->
+        <div *ngIf="checkTheme; else elseTheme">
+            <button pButton type="button" class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-sun" (click)="changeTheme('saga-orange')"></button>
+            &nbsp;<button pButton type="button" class="p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-moon" (click)="changeTheme('arya-orange')"></button>
+            &nbsp;<button pButton icon="pi pi-refresh" onClick="window.location.reload();" 
+                class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only"></button>
+        </div>
+        <ng-template #elseTheme>
+            <button pButton type="button" class="p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-sun" (click)="changeTheme('saga-orange')"></button>
+            &nbsp;<button pButton type="button" class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-moon" (click)="changeTheme('arya-orange')"></button>
+            &nbsp;<button pButton icon="pi pi-refresh" onClick="window.location.reload();" 
+                class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only"></button>
+        </ng-template>
+        <!-- Theme Changer and Refresh page -->
     </ng-template>
 </p-menubar>

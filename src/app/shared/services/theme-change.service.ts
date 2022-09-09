@@ -7,19 +7,19 @@ import { DOCUMENT } from '@angular/common'
 export class ThemeChangeService {
 
   // Theme Boolean Check State
-  // If false, theme is light
+  // If false, theme is dark
   checkTheme: boolean = false
 
   // Charts
   options: any
 
-  constructor( @Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document) { }
 
   updateChartOptions() {
-    // Light Mode
-    if (!this.checkTheme){
+    // Dark Mode
+    if (this.checkTheme === false){
       this.options = {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: true,
         plugins: {
           legend: {
@@ -45,10 +45,10 @@ export class ThemeChangeService {
         },
       }
     }
-    // Dark Mode
-    else {
+    // Light Mode
+    else if (this.checkTheme === true) {
       this.options = {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: true,
         plugins: {
           legend: {

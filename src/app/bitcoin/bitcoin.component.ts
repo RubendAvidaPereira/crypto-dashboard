@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BitcoinDataService } from './bitcoin-data.service';
 import { ThemeChangeService } from '../shared/services/theme-change.service';
+import { CryptoDataService } from '../shared/services/crypto-data.service';
 
 @Component({
   selector: 'app-bitcoin',
@@ -64,7 +64,7 @@ export class BitcoinComponent implements OnInit {
 
   // Get - Bitcoin Data
   getBitcoinData() {
-    this.btcService.getBitcoinData().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: "BTC", interval: "1d,7d,30d,365d", convert: "EUR" }).subscribe(
       (response) => {
         this.btcData = response
         console.log(response)
@@ -89,7 +89,7 @@ export class BitcoinComponent implements OnInit {
   }
 
   constructor(
-    private btcService: BitcoinDataService,
+    private dataService: CryptoDataService,
     private themeChange: ThemeChangeService) { }
 
   ngOnInit(): void {

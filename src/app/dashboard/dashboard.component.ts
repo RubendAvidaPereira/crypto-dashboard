@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardServiceService } from './dashboard-service.service';
 import { ThemeChangeService } from '../shared/services/theme-change.service';
+import { CryptoDataService } from '../shared/services/crypto-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +8,6 @@ import { ThemeChangeService } from '../shared/services/theme-change.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  // Theme Boolean Check State
-  // If false, theme is light
-  checkTheme: boolean = false
 
   // General Data
   lastDayData: any
@@ -38,7 +34,7 @@ export class DashboardComponent implements OnInit {
 
   // Get - Last Day Data
   getLastDayData() {
-    this.httpService.getLastDayPrices().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: 'BTC,ETH,ADA,DOT', interval: '1d', convert: 'EUR'}).subscribe(
       (response) => {
         this.lastDayData = response
         console.log(response)
@@ -51,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   // Get - Latest 50 top Cryptocurrencies data
   getLatestData() {
-    this.httpService.getLatestData().subscribe(
+    this.dataService.getCryptocurrenciesData({ interval: '1d', convert: 'EUR', perpage: '50' }).subscribe(
       (response) => {
         this.latestData = response
         console.log(response)
@@ -64,7 +60,7 @@ export class DashboardComponent implements OnInit {
 
   // Get - BTC data
   getBTCData() {
-    this.httpService.getBTCPrices().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: 'BTC', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
       (response) => {
           this.btcData = response
           console.log(response)
@@ -77,7 +73,7 @@ export class DashboardComponent implements OnInit {
 
   // Get - ETH data
   getETHData() {
-    this.httpService.getETHPrices().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: 'ETH', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
       (response) => {
           this.ethData = response
           console.log(response)
@@ -90,7 +86,7 @@ export class DashboardComponent implements OnInit {
 
   // Get - ADA data
   getADAData() {
-    this.httpService.getADAPrices().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: 'ADA', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
       (response) => {
           this.adaData = response
           console.log(response)
@@ -103,7 +99,7 @@ export class DashboardComponent implements OnInit {
 
   // Get - DOT data
   getDOTData() {
-    this.httpService.getDOTPrices().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: 'DOT', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
       (response) => {
           this.dotData = response
           console.log(response)
@@ -253,23 +249,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Change Theme in Dashboard
-  changeTheme(theme: string) {
-    this.themeService.switchTheme(theme);
-    if (theme === 'arya-orange') {
-      this.themeService.checkTheme = true
-      this.checkTheme = true
-      this.themeService.updateChartOptions()
-    }
-    else if (theme === 'saga-orange') {
-      this.themeService.checkTheme = false
-      this.checkTheme = false
-      this.themeService.updateChartOptions()
-    }
-  }
-
   constructor(
-    private httpService: DashboardServiceService,
+    private dataService: CryptoDataService,
     private themeService: ThemeChangeService
   ) { }
 

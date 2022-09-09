@@ -2,24 +2,8 @@
 <!-- Loader -->
 <p-progressBar *ngIf="!show" class="py-0" [style]="{ height: '0.25rem'}" mode="indeterminate"></p-progressBar>
 
-<!-- Theme Changer -->
-<div *ngIf="checkTheme; else elseTheme" class="flex justify-content-end px-3 py-3 md:px-5 lg:px-7">
-    
-    <button pButton type="button" class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-sun" (click)="changeTheme('saga-orange')"></button>
-    &nbsp;&nbsp;<button pButton type="button" class=" p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-moon" (click)="changeTheme('arya-orange')"></button>
-
-</div>
-
-<ng-template #elseTheme>
-    <div class="flex justify-content-end px-3 py-3 md:px-5 lg:px-7">
-        <button pButton type="button" class=" p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-sun" (click)="changeTheme('saga-orange')"></button>
-        &nbsp;&nbsp;<button pButton type="button" class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-moon" (click)="changeTheme('arya-orange')"></button>
-    </div>
-</ng-template>
-<!-- Theme Changer -->
-
 <!-- Last Day Prices for Major Cryptocoins -->
-<div class="px-3 py-1 md:px-5 lg:px-7">
+<div class="px-3 py-4 md:px-5 lg:px-7">
     
     <div class="grid">
         <!-- Bitcoin, Ethereum, Cardano and Polkadot -->
@@ -39,8 +23,6 @@
             </div>
         </div>
         <!-- End of Comparison -->
-       
-        
     </div>
 
     <br>
@@ -48,12 +30,12 @@
 
     <div class="grid py-4">
         <!-- + INFO -->
-        <div class="col-12 md:col-7 lg:col-7">
+        <div class="col-12 md:col-7 lg:col-8">
             <div class="surface-card shadow-2 p-3 border-round">
                 <h3>Overall Currencies Information - Top 50</h3>
                 <div class="flex justify-content-center">
                     <p-table [value]="latestData" responsiveLayout="scroll"
-                    [scrollable]="true" scrollHeight="400px"
+                    [scrollable]="true" scrollHeight="500px"
                     class="w-full">
                         <ng-template pTemplate="header">
                             <tr>
@@ -99,29 +81,29 @@
         <!-- + INFO -->
 
         <!-- CHARTS -->
-        <div class="col-12 md:col-5 lg:col-5">
+        <div class="col-12 md:col-5 lg:col-4">
             <div class="surface-card shadow-2 p-3 border-round">
                 <h3>Price Changes Charts</h3>
                 <p-tabView [scrollable]="true">
                     <!-- Market Cap Chart -->
                     <p-tabPanel header="Market Cap Data">
-                        <p-chart type="pie" [data]="_marketCapData" [options]="options"></p-chart> 
+                        <p-chart type="pie" [data]="_marketCapData" width="412"></p-chart> 
                     </p-tabPanel>
                     <!-- BTC Chart -->
                     <p-tabPanel header="Bitcoin Data">
-                        <p-chart type="line" [data]="_btcData" [options]="options" height="100" width="100"></p-chart>
+                        <p-chart type="line" [data]="_btcData" [options]="options" height="241"></p-chart>
                     </p-tabPanel>
                     <!-- ETH Chart -->
                     <p-tabPanel header="Ethereum Data" >
-                        <p-chart type="line" [data]="_ethData" [options]="options" height="100" width="100"></p-chart>
+                        <p-chart type="line" [data]="_ethData" [options]="options" height="241" ></p-chart>
                     </p-tabPanel>
                     <!-- ADA Chart -->
                     <p-tabPanel header="Cardano Data">
-                        <p-chart type="line" [data]="_adaData" [options]="options" height="100" width="100"></p-chart>    
+                        <p-chart type="line" [data]="_adaData" [options]="options" height="241"></p-chart>    
                     </p-tabPanel>
                     <!-- DOT Chart -->
                     <p-tabPanel header="Polkadot Data">
-                        <p-chart type="line" [data]="_dotData" [options]="options" height="100" width="100"></p-chart> 
+                        <p-chart type="line" [data]="_dotData" [options]="options" height="241"></p-chart> 
                     </p-tabPanel>
                 </p-tabView>
             </div>

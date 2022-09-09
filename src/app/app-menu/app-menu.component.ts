@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ThemeChangeService } from '../shared/services/theme-change.service';
 
 @Component({
   selector: 'app-app-menu',
@@ -10,9 +11,28 @@ export class AppMenuComponent implements OnInit {
 
   items: MenuItem[] = []
 
-  constructor() { }
+  constructor(private themeService: ThemeChangeService) { }
+
+  // Theme Boolean Check State
+  // If false, theme is dark
+  checkTheme: boolean = false
+  
+  // Change Theme in Dashboard
+  changeTheme(theme: string) {
+    this.themeService.switchTheme(theme);
+    if (theme === 'arya-orange') {
+      this.themeService.checkTheme = true
+      this.themeService.updateChartOptions()
+    }
+    else if (theme === 'saga-orange') {
+      this.themeService.checkTheme = false
+      this.themeService.updateChartOptions()
+    }
+    this.checkTheme = this.themeService.checkTheme
+  }
 
   ngOnInit(): void {
+
     this.items = [
       {
         label: "Crypto Dashboard",

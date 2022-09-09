@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EthereumDataService } from './ethereum-data.service';
 import { ThemeChangeService } from '../shared/services/theme-change.service';
+import { CryptoDataService } from '../shared/services/crypto-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ethereum',
@@ -25,12 +26,12 @@ export class EthereumComponent implements OnInit {
   
   constructor(
     private themeChange: ThemeChangeService,
-    private ethService: EthereumDataService
+    private dataService: CryptoDataService
   ) { }
 
   // Get - Eth data
   getETHData() {
-    this.ethService.getETHData().subscribe(
+    this.dataService.getCryptocurrenciesData({ currencies: "ETH", interval: "1d,7d,30d,365d", convert: "EUR" }).subscribe(
       (response) => {
         this.ethData = response
         console.log(response)
