@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeChangeService } from '../shared/services/theme-change.service';
 import { CryptoDataService } from '../shared/services/crypto-data.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ethereum',
@@ -96,6 +95,7 @@ export class EthereumComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.options = this.themeChange.options
 
     // Get - data

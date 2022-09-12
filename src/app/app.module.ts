@@ -10,8 +10,9 @@ import { AppMenuComponent } from './app-menu/app-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { EthereumComponent } from './ethereum/ethereum.component';
+import { SearchedCryptoComponent } from './searched-crypto/searched-crypto.component';
 
-// Styling with PrimeNG
+// Styling with PrimeNG Modules
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { MenubarModule } from 'primeng/menubar';
@@ -25,6 +26,8 @@ import { TimelineModule } from 'primeng/timeline';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DividerModule } from 'primeng/divider';
+import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { DividerModule } from 'primeng/divider';
     AppMenuComponent,
     DashboardComponent,
     BitcoinComponent,
-    EthereumComponent
+    EthereumComponent,
+    SearchedCryptoComponent
   ],
   imports: [
     // Required Modules
@@ -53,7 +57,9 @@ import { DividerModule } from 'primeng/divider';
     TimelineModule,
     ScrollPanelModule,
     ProgressBarModule,
-    DividerModule
+    DividerModule,
+    InputTextModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

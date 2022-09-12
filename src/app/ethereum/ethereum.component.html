@@ -4,7 +4,7 @@
 
 <div *ngIf="show" class="px-3 py-4 md:px-5 lg:px-7">
 
-    <!-- Knobs with % changes on price for 1, 7, 30 and 265 days -->
+    <!-- Knobs with % changes on price for 1, 7, 30 and 365 days -->
     <div class="grid text-center">
         <div class="col-12 md:col-6 lg:col-3">
             <h3>Price Change % - 1 Day</h3>
@@ -220,7 +220,7 @@
         <!-- Chart -->
         <div class="col-12 md:col-9 lg:col-6">
             <div class="surface-card shadow-2 border-round p-3">
-                <p-chart type="line" [data]="_ethData" [options]="options"></p-chart>
+                <p-chart type="line" [data]="_ethData" [options]="options" height="450px"></p-chart>
             </div>
         </div>
     </div>

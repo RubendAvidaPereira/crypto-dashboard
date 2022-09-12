@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,71 @@ export class CryptoDataService {
   // Crypto Dashboard API - Nomics
   apiKey: string = '96aac8178a49a4b0799bcff7c0cd5cfbc268dcea'
   apiURL: string = `https://api.nomics.com/v1/currencies/ticker?key=${this.apiKey}`
+
+  // Search Bar - Data Singleton Store
+  searched: any
+
+  /**
+   * Function that handles the searched query on the search bar, in the app-menu component.
+   * It returns the corresponding data for the searched text.
+   * @param searchText String received from the search bar in app-menu component
+   */
+  getSearchData(searchText: string){
+    let searchParams = searchText.split(" ")
+    
+    // Capitalize parameters
+    let _currency = searchParams[0].toUpperCase()
+    let _convert = searchParams[2].toUpperCase()
+
+    switch (searchParams.length){
+      case 1: // ----------------------------------------- 1 Parameter
+        this.getCryptocurrenciesData({
+          currencies: _currency
+        }).subscribe(
+          (response) => {
+            this.searched = response
+          },
+          (error) => console.warn("Error - Search Params Wrong\n" + error)
+        )
+        break
+      case 2: // ----------------------------------------- 2 Parameters
+        this.getCryptocurrenciesData({
+          currencies: _currency,
+          interval: searchParams[1]
+        }).subscribe(
+          (response) => {
+            this.searched = response
+          },
+          (error) => console.warn("Error - Search Params Wrong\n" + error)
+        )
+        break
+      case 3: // ----------------------------------------- 3 Parameters
+        this.getCryptocurrenciesData({
+          currencies: _currency,
+          interval: searchParams[1],
+          convert: _convert
+        }).subscribe(
+          (response) => {
+            this.searched = response
+          },
+          (error) => console.warn("Error - Search Params Wrong\n" + error)
+        )
+        break
+      case 4: // ----------------------------------------- 4 Parameters
+        this.getCryptocurrenciesData({
+          currencies: _currency,
+          interval: searchParams[1],
+          convert: _convert,
+          perpage: searchParams[3]
+        }).subscribe(
+          (response) => {
+            this.searched = response
+          },
+          (error) => console.warn("Error - Search Params Wrong\n" + error)
+        )
+        break
+    }
+  }
 
   /** Get - Crypto Data
    * 

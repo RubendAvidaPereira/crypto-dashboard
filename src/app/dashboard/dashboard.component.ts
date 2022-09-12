@@ -14,9 +14,6 @@ export class DashboardComponent implements OnInit {
   latestData: any
   show: boolean = false
 
-  // Table
-  cols: any
-
   // Chart Data from HTTP requests
   btcData: any
   ethData: any

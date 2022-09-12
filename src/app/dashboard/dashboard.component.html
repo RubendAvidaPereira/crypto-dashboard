@@ -4,7 +4,7 @@
 
 <!-- Last Day Prices for Major Cryptocoins -->
 <div class="px-3 py-4 md:px-5 lg:px-7">
-    
+    <app-searched-crypto></app-searched-crypto>
     <div class="grid">
         <!-- Bitcoin, Ethereum, Cardano and Polkadot -->
         <div *ngFor="let data of lastDayData" class="col-12 md:col-6 lg:col-3">
@@ -30,7 +30,7 @@
 
     <div class="grid py-4">
         <!-- + INFO -->
-        <div class="col-12 md:col-7 lg:col-8">
+        <div class="col-12 md:col-7 lg:col-7">
             <div class="surface-card shadow-2 p-3 border-round">
                 <h3>Overall Currencies Information - Top 50</h3>
                 <div class="flex justify-content-center">
@@ -81,29 +81,29 @@
         <!-- + INFO -->
 
         <!-- CHARTS -->
-        <div class="col-12 md:col-5 lg:col-4">
-            <div class="surface-card shadow-2 p-3 border-round">
+        <div class="col-12 md:col-5 lg:col-5">
+            <div class="surface-card shadow-2 p-3 border-round h-full">
                 <h3>Price Changes Charts</h3>
                 <p-tabView [scrollable]="true">
                     <!-- Market Cap Chart -->
                     <p-tabPanel header="Market Cap Data">
-                        <p-chart type="pie" [data]="_marketCapData" width="412"></p-chart> 
+                        <p-chart type="pie" [data]="_marketCapData" height="400px"></p-chart> 
                     </p-tabPanel>
                     <!-- BTC Chart -->
                     <p-tabPanel header="Bitcoin Data">
-                        <p-chart type="line" [data]="_btcData" [options]="options" height="241"></p-chart>
+                        <p-chart type="line" [data]="_btcData" [options]="options" height="400px"></p-chart>
                     </p-tabPanel>
                     <!-- ETH Chart -->
                     <p-tabPanel header="Ethereum Data" >
-                        <p-chart type="line" [data]="_ethData" [options]="options" height="241" ></p-chart>
+                        <p-chart type="line" [data]="_ethData" [options]="options" height="400px"></p-chart>
                     </p-tabPanel>
                     <!-- ADA Chart -->
                     <p-tabPanel header="Cardano Data">
-                        <p-chart type="line" [data]="_adaData" [options]="options" height="241"></p-chart>    
+                        <p-chart type="line" [data]="_adaData" [options]="options" height="400px"></p-chart>    
                     </p-tabPanel>
                     <!-- DOT Chart -->
                     <p-tabPanel header="Polkadot Data">
-                        <p-chart type="line" [data]="_dotData" [options]="options" height="241"></p-chart> 
+                        <p-chart type="line" [data]="_dotData" [options]="options" height="400px"></p-chart> 
                     </p-tabPanel>
                 </p-tabView>
             </div>
