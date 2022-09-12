@@ -83,25 +83,25 @@
         <div class="col-12 md:col-5 lg:col-5">
             <div class="surface-card shadow-2 p-3 border-round h-full">
                 <h3>Price Changes Charts</h3>
-                <p-tabView [scrollable]="true">
+                <p-tabView>
                     <!-- Market Cap Chart -->
-                    <p-tabPanel header="Market Cap Data">
+                    <p-tabPanel header="Market Cap">
                         <p-chart type="pie" [data]="_marketCapData" height="400px"></p-chart> 
                     </p-tabPanel>
                     <!-- BTC Chart -->
-                    <p-tabPanel header="Bitcoin Data">
+                    <p-tabPanel header="Bitcoin">
                         <p-chart type="line" [data]="_btcData" [options]="options" height="400px"></p-chart>
                     </p-tabPanel>
                     <!-- ETH Chart -->
-                    <p-tabPanel header="Ethereum Data" >
+                    <p-tabPanel header="Ethereum" >
                         <p-chart type="line" [data]="_ethData" [options]="options" height="400px"></p-chart>
                     </p-tabPanel>
                     <!-- ADA Chart -->
-                    <p-tabPanel header="Cardano Data">
+                    <p-tabPanel header="Cardano">
                         <p-chart type="line" [data]="_adaData" [options]="options" height="400px"></p-chart>    
                     </p-tabPanel>
                     <!-- DOT Chart -->
-                    <p-tabPanel header="Polkadot Data">
+                    <p-tabPanel header="Polkadot">
                         <p-chart type="line" [data]="_dotData" [options]="options" height="400px"></p-chart> 
                     </p-tabPanel>
                 </p-tabView>

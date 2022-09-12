@@ -44,6 +44,8 @@ export class CryptoDataService {
         this.getCryptocurrenciesData({
           currencies: _currency,
           interval: "1d,7d,30d,365d",
+          convert: "EUR",
+          perpage: "30"
         }).subscribe(
           (response) => {
             this.searched = response
@@ -56,7 +58,7 @@ export class CryptoDataService {
         this.getCryptocurrenciesData({
           currencies: _currency,
           interval: "1d,7d,30d,365d",
-          convert: _convert
+          convert: _convert,
         }).subscribe(
           (response) => {
             this.searched = response

@@ -28,6 +28,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ProgressBarModule,
     DividerModule,
     InputTextModule,
-    TooltipModule
+    TooltipModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

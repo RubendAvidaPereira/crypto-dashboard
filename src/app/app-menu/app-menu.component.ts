@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { CryptoDataService } from '../shared/services/crypto-data.service';
 import { ThemeChangeService } from '../shared/services/theme-change.service';
@@ -23,7 +24,8 @@ export class AppMenuComponent implements OnInit {
 
   constructor(
     private themeService: ThemeChangeService,
-    private cryptoDataService: CryptoDataService) { }
+    private cryptoDataService: CryptoDataService,
+    private router: Router) { }
   
   // Change Theme in Dashboard
   changeTheme(theme: string) {
@@ -57,21 +59,20 @@ export class AppMenuComponent implements OnInit {
 
     this.items = [
       {
-        label: "Crypto Dashboard",
+        label: "Dashboard",
         icon: "fa-solid fa-gauge-high",
         routerLink: "dashboard",
       },
       {
         label: "Bitcoin",
         icon: "fa-brands fa-bitcoin",
-        routerLink: "bitcoinInfo"
+        routerLink: "bitcoinInfo",
       },
       {
         label: "Ethereum",
         icon: "fa-brands fa-ethereum",
-        routerLink: "ethereumInfo"
+        routerLink: "ethereumInfo",
       },
     ]
   }
-
 }
