@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptoDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router) { }
 
   // Crypto Dashboard API - Nomics
   apiKey: string = '96aac8178a49a4b0799bcff7c0cd5cfbc268dcea'
@@ -22,10 +25,17 @@ export class CryptoDataService {
    */
   getSearchData(searchText: string){
     let searchParams = searchText.split(" ")
-    
+    let _currency = ''
+    let _convert = ''
+
     // Capitalize parameters
-    let _currency = searchParams[0].toUpperCase()
-    let _convert = searchParams[2].toUpperCase()
+    if (searchParams[0]){
+      _currency = searchParams[0].toUpperCase()
+    }
+    
+    if (searchParams[2]){
+      _convert = searchParams[2].toUpperCase()
+    }
 
     switch (searchParams.length){
       case 1: // ----------------------------------------- 1 Parameter
@@ -34,6 +44,7 @@ export class CryptoDataService {
         }).subscribe(
           (response) => {
             this.searched = response
+            console.log("1 parameter searched\n")
           },
           (error) => console.warn("Error - Search Params Wrong\n" + error)
         )
@@ -41,10 +52,11 @@ export class CryptoDataService {
       case 2: // ----------------------------------------- 2 Parameters
         this.getCryptocurrenciesData({
           currencies: _currency,
-          interval: searchParams[1]
+          interval: "1d,7d,30d,365d"
         }).subscribe(
           (response) => {
             this.searched = response
+            console.log("2 parameters searched\n")
           },
           (error) => console.warn("Error - Search Params Wrong\n" + error)
         )
@@ -52,11 +64,12 @@ export class CryptoDataService {
       case 3: // ----------------------------------------- 3 Parameters
         this.getCryptocurrenciesData({
           currencies: _currency,
-          interval: searchParams[1],
+          interval: "1d,7d,30d,365d",
           convert: _convert
         }).subscribe(
           (response) => {
             this.searched = response
+            console.log("3 parameters searched\n")
           },
           (error) => console.warn("Error - Search Params Wrong\n" + error)
         )
@@ -64,17 +77,19 @@ export class CryptoDataService {
       case 4: // ----------------------------------------- 4 Parameters
         this.getCryptocurrenciesData({
           currencies: _currency,
-          interval: searchParams[1],
+          interval: "1d,7d,30d,365d",
           convert: _convert,
           perpage: searchParams[3]
         }).subscribe(
           (response) => {
             this.searched = response
+            console.log("4 parameters searched\n")
           },
           (error) => console.warn("Error - Search Params Wrong\n" + error)
         )
         break
     }
+    this.router.navigate(['/', 'search'])
   }
 
   /** Get - Crypto Data
