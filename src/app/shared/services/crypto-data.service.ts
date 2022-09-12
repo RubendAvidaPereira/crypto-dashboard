@@ -24,6 +24,8 @@ export class CryptoDataService {
    * @param searchText String received from the search bar in app-menu component
    */
   getSearchData(searchText: string){
+    
+    // Needed variables and split the query accordingly
     let searchParams = searchText.split(" ")
     let _currency = ''
     let _convert = ''
@@ -33,14 +35,15 @@ export class CryptoDataService {
       _currency = searchParams[0].toUpperCase()
     }
     
-    if (searchParams[2]){
-      _convert = searchParams[2].toUpperCase()
+    if (searchParams[1]){
+      _convert = searchParams[1].toUpperCase()
     }
 
     switch (searchParams.length){
       case 1: // ----------------------------------------- 1 Parameter
         this.getCryptocurrenciesData({
-          currencies: _currency
+          currencies: _currency,
+          interval: "1d,7d,30d,365d",
         }).subscribe(
           (response) => {
             this.searched = response
@@ -52,7 +55,8 @@ export class CryptoDataService {
       case 2: // ----------------------------------------- 2 Parameters
         this.getCryptocurrenciesData({
           currencies: _currency,
-          interval: "1d,7d,30d,365d"
+          interval: "1d,7d,30d,365d",
+          convert: _convert
         }).subscribe(
           (response) => {
             this.searched = response
@@ -60,36 +64,14 @@ export class CryptoDataService {
           },
           (error) => console.warn("Error - Search Params Wrong\n" + error)
         )
-        break
-      case 3: // ----------------------------------------- 3 Parameters
-        this.getCryptocurrenciesData({
-          currencies: _currency,
-          interval: "1d,7d,30d,365d",
-          convert: _convert
-        }).subscribe(
-          (response) => {
-            this.searched = response
-            console.log("3 parameters searched\n")
-          },
-          (error) => console.warn("Error - Search Params Wrong\n" + error)
-        )
-        break
-      case 4: // ----------------------------------------- 4 Parameters
-        this.getCryptocurrenciesData({
-          currencies: _currency,
-          interval: "1d,7d,30d,365d",
-          convert: _convert,
-          perpage: searchParams[3]
-        }).subscribe(
-          (response) => {
-            this.searched = response
-            console.log("4 parameters searched\n")
-          },
-          (error) => console.warn("Error - Search Params Wrong\n" + error)
-        )
-        break
+        
     }
-    this.router.navigate(['/', 'search'])
+    
+    setTimeout(() => {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/', 'search'])
+      })
+    }, 1000)
   }
 
   /** Get - Crypto Data

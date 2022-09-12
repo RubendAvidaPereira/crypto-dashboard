@@ -15,6 +15,7 @@ export class AppMenuComponent implements OnInit {
 
   // Search Bar string to be sent to the CryptoData Service
   searchBar: string = ''
+  notLoading = true
 
   // Theme Boolean Check State
   // If false, theme is dark
@@ -40,8 +41,14 @@ export class AppMenuComponent implements OnInit {
   }
 
   onSubmit(searchText: string){
+    this.notLoading = false
     this.searchBar = searchText
     this.cryptoDataService.getSearchData(this.searchBar)
+    console.log(this.notLoading)
+    setTimeout(() => {
+      this.notLoading = true
+      console.log(this.notLoading)
+    }, 2750)
   }
 
   ngOnInit(): void {

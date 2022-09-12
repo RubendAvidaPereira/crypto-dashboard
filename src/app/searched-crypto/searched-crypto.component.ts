@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptoDataService } from '../shared/services/crypto-data.service';
+import { ThemeChangeService } from '../shared/services/theme-change.service';
 
 @Component({
   selector: 'app-searched-crypto',
@@ -11,7 +12,9 @@ export class SearchedCryptoComponent implements OnInit {
   // Searched Content
   searched: any
 
-  constructor(private dataService: CryptoDataService) { }
+  constructor(
+    private dataService: CryptoDataService,
+    private themeService: ThemeChangeService) { }
 
   // Values 
   price_change_pct_1d: string = ''
@@ -77,14 +80,15 @@ export class SearchedCryptoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.options = this.themeService.options
     this.searched = this.dataService.searched
 
-    this.createValues()
     // Draw Chart
     setTimeout(() => {
+      this.createValues()
       this.drawSearchedChart()
       this.show = true
-    }, 3000)
+    }, 1500)
   }
 
 }

@@ -10,13 +10,17 @@
         <!-- Theme Changer and Refresh page -->
         <div *ngIf="!checkTheme; else elseTheme">
             <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
+                <!-- Custom Icon -->
+                <i *ngIf="notLoading" class="pi pi-search"></i>
+                <i *ngIf="!notLoading" class="pi pi-spin pi-spinner"></i>
+                <!-- Input Text -->
                 <input type="text" #searchBar (keyup.enter)="onSubmit(searchBar.value)" pInputText placeholder="Search"
                 pTooltip="The searchbar is used like a query, to use it we have 4 options, that should be used in order: 
                 - Cryptocurrency: A string with the symbol of the cryptocurrencies you want to search;
                 - Convert: Converts the value of the cryptocurrencie to a desired value, EUR, USD (default);
                 - Example: btc EUR" tooltipPosition="bottom"/>
             </span>
+            <!-- Theme Changer and Refresh Button -->
             &nbsp;<button pButton type="button" class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-sun" (click)="changeTheme('saga-orange')"></button>
             &nbsp;<button pButton type="button" class="p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-moon" (click)="changeTheme('arya-orange')"></button>
             &nbsp;<button pButton icon="pi pi-refresh" onClick="window.location.reload();" 
@@ -24,13 +28,17 @@
         </div>
         <ng-template #elseTheme>
             <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
+                <!-- Custom Icon -->
+                <i *ngIf="notLoading" class="pi pi-search"></i>
+                <i *ngIf="!notLoading" class="pi pi-spin pi-spinner"></i>
+                <!-- Input Text -->
                 <input type="text" #searchBar (keyup.enter)="onSubmit(searchBar.value)" pInputText placeholder="Search"
                 pTooltip="The searchbar is used like a query, to use it we have 4 options, that should be used in order: 
                 - Cryptocurrency: A string with the symbol of the cryptocurrencies you want to search;
                 - Convert: Converts the value of the cryptocurrencie to a desired value, EUR, USD (default);
                 - Example: btc EUR" tooltipPosition="bottom"/>
             </span>
+            <!-- Theme Changer and Refresh Button -->
             &nbsp;<button pButton type="button" class="p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-sun" (click)="changeTheme('saga-orange')"></button>
             &nbsp;<button pButton type="button" class="p-button-outlined p-element p-ripple p-button-rounded p-button p-component p-button-icon-only" icon="pi pi-moon" (click)="changeTheme('arya-orange')"></button>
             &nbsp;<button pButton icon="pi pi-refresh" onClick="window.location.reload();" 
