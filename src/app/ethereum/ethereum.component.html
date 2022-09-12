@@ -1,0 +1,227 @@
+
+<!-- Loader -->
+<p-progressBar *ngIf="!show" class="py-0" [style]="{ height: '0.25rem'}" mode="indeterminate"></p-progressBar>
+
+<div *ngIf="show" class="px-3 py-4 md:px-5 lg:px-7">
+
+    <!-- Knobs with % changes on price for 1, 7, 30 and 365 days -->
+    <div class="grid text-center">
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 1 Day</h3>
+            <p-knob [(ngModel)]="price_change_pct_1d" [readonly]="true" [min]="-75" [max]="75" [size]="150"></p-knob>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 7 Days</h3>
+            <p-knob [(ngModel)]="price_change_pct_7d" [readonly]="true" [min]="-75" [max]="75" [size]="150"></p-knob>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 30 Days</h3>
+            <p-knob [(ngModel)]="price_change_pct_30d" [readonly]="true" [min]="-75" [max]="75" [size]="150"></p-knob>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h3>Price Change % - 365 Days</h3>
+            <p-knob [(ngModel)]="price_change_pct_365d" [readonly]="true" [min]="-75" [max]="75" [size]="150"></p-knob>
+        </div>
+    </div>
+
+    <p-divider align="right" type="dashed">
+        <div class="inline-flex align-items-center">
+            <i class="fa-brands fa-ethereum"></i>
+        </div>
+    </p-divider>
+
+    <!-- + Info in Ethereum data -->
+    <div class="grid py-2">
+        <div class="col-12 md:col-9 lg:col-6">
+            <div class="surface-card shadow-2 border-round p-3">
+                <div class="grid">
+                    <div class="col-4 text-center pt-8">
+                        <img alt="Ethereum Logo" class="w-6 h-6" src="{{ ethData[0].logo_url }}">
+                        <h3>Ethereum Information</h3>
+                        <h5 class="text-700">Prices & Changes</h5>
+                    </div>
+                    <p-divider layout="vertical"></p-divider>
+                    <div class="col-7 line-height-4">
+                        <ul class="list-none">
+                            <li><strong>Market Cap:</strong> {{ ethData[0].market_cap | currency:"EUR" }}</li>
+                            <li><strong>Current Price:</strong> {{ ethData[0].price | currency:"EUR" }}</li>
+                            <li><strong>Highest Price:</strong> {{ ethData[0].high | currency:"EUR"}}</li>
+                            <li><strong>Circulating Supply:</strong> {{ ethData[0].circulating_supply }}</li>
+                            <li><strong>Maximum Supply:</strong> {{ ethData[0].max_supply }}</li>
+                            <li>
+                                <p-scrollPanel [style]="{width: '100%', height: '250px'}">
+                                    <!-- 1 Day Information -->
+                                    <h4>1 Day Changes: </h4>
+                                    <ul class="list-none">
+                                        <!-- Market Cap -->
+                                        <li>Market Cap Change (€): {{ ethData[0]["1d"].market_cap_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['1d'].market_cap_change_pct >= 0; else negativeMarketCapChange"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Market Cap Change (%): {{ ethData[0]["1d"].market_cap_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeMarketCapChange>
+                                            <li [ngStyle]="{ color:'var(--red-500)' }">
+                                                Market Cap Change (%): {{ ethData[0]["1d"].market_cap_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+
+                                        <!-- Price Change -->
+                                        <li>Price Change (€): {{ ethData[0]["1d"].price_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['1d'].price_change_pct >= 0; else negativePriceChange"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Price Change (%): {{ ethData[0]["1d"].price_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativePriceChange>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">
+                                                Price Change (%): {{ ethData[0]["1d"].price_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                        
+                                        <!-- Volume Change -->
+                                        <li>Volume Change (€): {{ ethData[0]["1d"].volume_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['1d'].volume_change_pct >= 0; else negativeVolumeChange"
+                                            [ngStyle]="{ color: ('var(--green-500)')}">
+                                            Volume Change (%): {{ ethData[0]["1d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeVolumeChange>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">    
+                                                Volume Change (%): {{ ethData[0]["1d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                    </ul>
+
+                                    <!-- 7 Days Changes -->
+                                    <h4>7 Days Changes:</h4>
+                                    <ul class="list-none">
+                                        <!-- Market Cap -->
+                                        <li>Market Cap Change (€): {{ ethData[0]["7d"].market_cap_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['7d'].market_cap_change_pct >= 0; else negativeMarketCapChange7"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Market Cap Change (%): {{ ethData[0]["7d"].market_cap_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeMarketCapChange7>
+                                            <li [ngStyle]="{ color:'var(--red-500)' }">
+                                                Market Cap Change (%): {{ ethData[0]["7d"].market_cap_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+
+                                        <!-- Price Change -->
+                                        <li>Price Change (€): {{ ethData[0]["7d"].price_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['7d'].price_change_pct >= 0; else negativePriceChange7"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Price Change (%): {{ ethData[0]["7d"].price_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativePriceChange7>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">
+                                                Price Change (%): {{ ethData[0]["7d"].price_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                        
+                                        <!-- Volume Change -->
+                                        <li>Volume Change (€): {{ ethData[0]["7d"].volume_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['7d'].volume_change_pct >= 0; else negativeVolumeChange7"
+                                            [ngStyle]="{ color: ('var(--green-500)')}">
+                                            Volume Change (%): {{ ethData[0]["7d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeVolumeChange7>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">    
+                                                Volume Change (%): {{ ethData[0]["7d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                    </ul>
+
+                                    <!-- 30 Days Changes -->
+                                    <h4>30 Days Changes:</h4>
+                                    <ul class="list-none">
+                                        <!-- Market Cap -->
+                                        <li>Market Cap Change (€): {{ ethData[0]["30d"].market_cap_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['30d'].market_cap_change_pct >= 0; else negativeMarketCapChange30"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Market Cap Change (%): {{ ethData[0]["30d"].market_cap_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeMarketCapChange30>
+                                            <li [ngStyle]="{ color:'var(--red-500)' }">
+                                                Market Cap Change (%): {{ ethData[0]["30d"].market_cap_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+
+                                        <!-- Price Change -->
+                                        <li>Price Change (€): {{ ethData[0]["30d"].price_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['30d'].price_change_pct >= 0; else negativePriceChange30"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Price Change (%): {{ ethData[0]["30d"].price_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativePriceChange30>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">
+                                                Price Change (%): {{ ethData[0]["30d"].price_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                        
+                                        <!-- Volume Change -->
+                                        <li>Volume Change (€): {{ ethData[0]["30d"].volume_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['30d'].volume_change_pct >= 0; else negativeVolumeChange30"
+                                            [ngStyle]="{ color: ('var(--green-500)')}">
+                                            Volume Change (%): {{ ethData[0]["30d"].volume_change_pct * 100| number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeVolumeChange30>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">    
+                                                Volume Change (%): {{ ethData[0]["30d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                    </ul>
+
+                                    <!-- 365 Days Changes -->
+                                    <h4>365 Days Changes:</h4>
+                                    <ul class="list-none">
+                                        <!-- Market Cap -->
+                                        <li>Market Cap Change (€): {{ ethData[0]["365d"].market_cap_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['365d'].market_cap_change_pct >= 0; else negativeMarketCapChange365"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Market Cap Change (%): {{ ethData[0]["365d"].market_cap_change_pct * 100| number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeMarketCapChange365>
+                                            <li [ngStyle]="{ color:'var(--red-500)' }">
+                                                Market Cap Change (%): {{ ethData[0]["365d"].market_cap_change_pct * 100| number: '1.0-2'}}
+                                            </li>
+                                        </ng-template>
+
+                                        <!-- Price Change -->
+                                        <li>Price Change (€): {{ ethData[0]["365d"].price_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['365d'].price_change_pct >= 0; else negativePriceChange365"
+                                            [ngStyle]="{ color: 'var(--green-500)'}">
+                                            Price Change (%): {{ ethData[0]["365d"].price_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativePriceChange365>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">
+                                                Price Change (%): {{ ethData[0]["365d"].price_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                        
+                                        <!-- Volume Change -->
+                                        <li>Volume Change (€): {{ ethData[0]["365d"].volume_change | currency:"EUR" }}</li>
+                                        <li *ngIf="ethData[0]['365d'].volume_change_pct >= 0; else negativeVolumeChange365"
+                                            [ngStyle]="{ color: ('var(--green-500)')}">
+                                            Volume Change (%): {{ ethData[0]["365d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                        </li>
+                                        <ng-template #negativeVolumeChange365>
+                                            <li [ngStyle]="{ color: 'var(--red-500)'}">    
+                                                Volume Change (%): {{ ethData[0]["365d"].volume_change_pct * 100 | number: '1.0-2' }}
+                                            </li>
+                                        </ng-template>
+                                    </ul>
+                                </p-scrollPanel>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <!-- Chart -->
+        <div class="col-12 md:col-9 lg:col-6">
+            <div class="surface-card shadow-2 border-round p-3">
+                <p-chart type="line" [data]="_ethData" [options]="options" height="450px"></p-chart>
+            </div>
+        </div>
+    </div>
+</div>
