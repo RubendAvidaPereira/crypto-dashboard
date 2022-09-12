@@ -1,27 +1,11 @@
-# MyFirstProject
+# Crypto Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Basic Information
+- This crypto dashboard was developed with the free API for cryptocurrencies information by Nomics
+- The main dashboard shows information about my top 4 favorite cryptocurrencies as a data table with information such as Price Changes %, Supply/Max Supply and more.
+- The main dashboard also displays a tab menu with what I think it is some useful charts.
+- In the app menubar, represented on top of the window, there are 3 interactive buttons on the right side, to change the theme from dark to light, to refresh the page. There is also an input text box which should be used as it follows:
+	- It only accepts two parameters, each of them separated by a blank space.
+	- **1st Parameter (Cryptocurrencies Symbols)** - The first parameter it is used to describe what symbols/tokens you want to search for, the sintax should be: "btc,eth,ada,dot". Without this parameter it searches information regarding the top 30 cryptocurrencies.
+	- **2nd Parameter (Conversion)** - The second parameter it is used to select which currency conversion should be used, it can only support one conversion symbol.
+	- **A full search** should look like these: "btc,ada,matic,aave eur" or "btc,ada,matic usd"

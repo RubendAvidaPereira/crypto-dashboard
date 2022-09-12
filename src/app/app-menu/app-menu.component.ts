@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { CryptoDataService } from '../shared/services/crypto-data.service';
 import { ThemeChangeService } from '../shared/services/theme-change.service';
@@ -24,8 +23,7 @@ export class AppMenuComponent implements OnInit {
 
   constructor(
     private themeService: ThemeChangeService,
-    private cryptoDataService: CryptoDataService,
-    private router: Router) { }
+    private cryptoDataService: CryptoDataService) { }
   
   // Change Theme in Dashboard
   changeTheme(theme: string) {

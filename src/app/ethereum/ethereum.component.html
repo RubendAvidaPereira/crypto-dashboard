@@ -33,7 +33,7 @@
     <!-- + Info in Ethereum data -->
     <div class="grid py-2">
         <div class="col-12 md:col-9 lg:col-6">
-            <div class="surface-card shadow-2 border-round p-3">
+            <div class="surface-card shadow-4 border-round p-3">
                 <div class="grid">
                     <div class="col-4 text-center pt-8">
                         <img alt="Ethereum Logo" class="w-6 h-6" src="{{ ethData[0].logo_url }}">
@@ -219,7 +219,7 @@
 
         <!-- Chart -->
         <div class="col-12 md:col-9 lg:col-6">
-            <div class="surface-card shadow-2 border-round p-3">
+            <div class="surface-card shadow-4 border-round p-3">
                 <p-chart type="line" [data]="_ethData" [options]="options" height="450px"></p-chart>
             </div>
         </div>

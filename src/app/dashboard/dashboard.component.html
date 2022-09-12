@@ -7,10 +7,10 @@
     <div class="grid">
         <!-- Bitcoin, Ethereum, Cardano and Polkadot -->
         <div *ngFor="let data of lastDayData" class="col-12 md:col-6 lg:col-3">
-            <div class="surface-card shadow-2 p-3 border-round">
+            <div class="surface-card shadow-4 p-3 border-round">
                 <div class="flex justify-content-between mb-3">
                     <div>
-                        <span class="block text-500 font-medium mb-3">{{ data.id }}</span>
+                        <span class="block text-500 font-medium mb-3">{{ data.id }} - {{ data.name }}</span>
                         <div class="text-900 font-medium text-xl">{{ data.price | currency:"EUR" }}</div>
                     </div>
                     <div class="flex align-items-center justify-content-center" style="width:2.5rem;height:2.5rem">
@@ -24,13 +24,16 @@
         <!-- End of Comparison -->
     </div>
 
-    <br>
-    <hr>
+    <p-divider align="right" type="dashed">
+        <div class="inline-flex align-items-center">
+            <i class="fa-solid fa-coins"></i>
+        </div>
+    </p-divider>
 
-    <div class="grid py-4">
+    <div class="grid py-3">
         <!-- + INFO -->
         <div class="col-12 md:col-7 lg:col-7">
-            <div class="surface-card shadow-2 p-3 border-round">
+            <div class="surface-card shadow-4 p-3 border-round">
                 <h3>Overall Currencies Information - Top 50</h3>
                 <div class="flex justify-content-center">
                     <p-table [value]="latestData" responsiveLayout="scroll"
@@ -48,7 +51,7 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-latestData>
                             <tr>
-                                <td>{{ latestData.id }}</td>
+                                <td>{{ latestData.id }}&nbsp;<small>{{ latestData.name }}</small></td>
                                 <td>{{ latestData.price | currency:"EUR" }}</td>
                                 <td>{{ latestData.high | currency:"EUR" }}</td>
                                 <td>{{ latestData.circulating_supply }}</td>
@@ -81,7 +84,7 @@
 
         <!-- CHARTS -->
         <div class="col-12 md:col-5 lg:col-5">
-            <div class="surface-card shadow-2 p-3 border-round h-full">
+            <div class="surface-card shadow-4 p-3 border-round h-full">
                 <h3>Price Changes Charts</h3>
                 <p-tabView>
                     <!-- Market Cap Chart -->
