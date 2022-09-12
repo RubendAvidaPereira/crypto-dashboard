@@ -85,7 +85,17 @@ export class CryptoDataService {
    * @param perpage The maximum number of items to return per paginated response,
    * @returns Json response with the corresponding query.
    */
-  getCryptocurrenciesData({ currencies, interval, convert, perpage }: { currencies?: string; interval?: string; convert?: string; perpage?: string; } = {}) {
+  getCryptocurrenciesData({ 
+    currencies, 
+    interval, 
+    convert, 
+    perpage 
+  }: 
+  { currencies?: string; 
+    interval?: string; 
+    convert?: string; 
+    perpage?: string; 
+  } = {}) {
   
     // 1 PARAMETER UNDEFINED
     // If currencies is undefined
