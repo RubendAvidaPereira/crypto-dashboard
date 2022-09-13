@@ -13,7 +13,7 @@ export class CryptoDataService {
 
   // Crypto Dashboard API - Nomics
   apiKey: string = '96aac8178a49a4b0799bcff7c0cd5cfbc268dcea'
-  apiURL: string = `https://thingproxy.freeboard.io/fetch/https://api.nomics.com/v1/currencies/ticker?key=${this.apiKey}`
+  apiURL: string = `http://alloworigin.com/get?url=https://api.nomics.com/v1/currencies/ticker?key=${this.apiKey}`
 
   // Search Bar - Data Singleton Store
   searched: any
