@@ -15,7 +15,7 @@ export class CryptoDataService {
   apiKey: string = '96aac8178a49a4b0799bcff7c0cd5cfbc268dcea'
   apiURL: string = `https://corsproxy.io/?https://api.nomics.com/v1/currencies/ticker?key=${this.apiKey}`
 
-  // Search Bar - Data Singleton Store
+  // Search Bar - Data Store for Search Bar
   searched: any
 
   /**
