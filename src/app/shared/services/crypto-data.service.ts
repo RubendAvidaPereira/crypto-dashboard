@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,6 +14,13 @@ export class CryptoDataService {
   // Crypto Dashboard API - Nomics
   apiKey: string = '96aac8178a49a4b0799bcff7c0cd5cfbc268dcea'
   apiURL: string = `https://api.nomics.com/v1/currencies/ticker?key=${this.apiKey}`
+
+  // Headers
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    })
+  }
 
   // Search Bar - Data Singleton Store
   searched: any
@@ -204,86 +211,86 @@ export class CryptoDataService {
     // 1 PARAMETER UNDEFINED
     // If currencies is undefined
     if (interval !== undefined && convert !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&interval=${interval}&per-page=${perpage}&convert=${convert}`)
+      return this.http.get(this.apiURL + `&interval=${interval}&per-page=${perpage}&convert=${convert}`, this.httpOptions)
     }
 
     // If perpage is undefined
     else if (currencies !== undefined && interval !== undefined && convert !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}&convert=${convert}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}&convert=${convert}`, this.httpOptions)
     }
 
     // If convert is undefined
     else if (currencies !== undefined && interval !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}&per-page=${perpage}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}&per-page=${perpage}`, this.httpOptions)
     }
 
     // If interval is undefined
     else if (currencies !== undefined && convert !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&convert=${convert}&per-page=${perpage}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&convert=${convert}&per-page=${perpage}`, this.httpOptions)
     }
     // ---------------------------------------------------------------------------------------------------
 
     // 2 PARAMETERS UNDEFINED
     // If currencies and interval are undefined
     else if (convert !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&convert=${convert}&per-page=${perpage}`)
+      return this.http.get(this.apiURL + `&convert=${convert}&per-page=${perpage}`, this.httpOptions)
     }
 
     // If currencies and convert are undefined
     else if (interval !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&interval=${interval}&per-page=${perpage}`)
+      return this.http.get(this.apiURL + `&interval=${interval}&per-page=${perpage}`, this.httpOptions)
     }
 
     // If currencies and perpage are undefined
     else if (interval !== undefined && convert !== undefined){
-      return this.http.get(this.apiURL + `&interval=${interval}&convert=${convert}`)
+      return this.http.get(this.apiURL + `&interval=${interval}&convert=${convert}`, this.httpOptions)
     }
 
     // If perpage and interval are undefined
     else if (currencies !== undefined && convert !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&convert=${convert}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&convert=${convert}`, this.httpOptions)
     }
 
     // If perpage and convert are undefined
     else if (currencies !== undefined && interval !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}`, this.httpOptions)
     }
 
     // If interval and convert are undefined
     else if (currencies !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&per-page=${perpage}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&per-page=${perpage}`, this.httpOptions)
     }
     // ----------------------------------------------------------------------------------------------------
 
     // 3 PARAMETERS UNDEFINED
     // If currencies, interval and convert are undefined
     else if (perpage !== undefined){
-      return this.http.get(this.apiURL + `&per-page=${perpage}`)
+      return this.http.get(this.apiURL + `&per-page=${perpage}`, this.httpOptions)
     }
 
     // If currencies, interval and perpage are undefined
     else if (convert !== undefined){
-      return this.http.get(this.apiURL + `&convert=${convert}`)
+      return this.http.get(this.apiURL + `&convert=${convert}`, this.httpOptions)
     }
 
     // If interval, convert and perpage are undefined
     else if (currencies !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}`, this.httpOptions)
     }
 
     // If currencies, convert and perpage are undefined
     else if (interval !== undefined){
-      return this.http.get(this.apiURL + `&interval=${interval}`)
+      return this.http.get(this.apiURL + `&interval=${interval}`, this.httpOptions)
     }
     // ----------------------------------------------------------------------------------------------------
 
     // ALL PARAMETERS
     else if (currencies !== undefined && interval !== undefined && convert !== undefined && perpage !== undefined){
-      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}&per-page=${perpage}&convert=${convert}`)
+      return this.http.get(this.apiURL + `&ids=${currencies}&interval=${interval}&per-page=${perpage}&convert=${convert}`, this.httpOptions)
     }
 
     // Returns default response from nomics
-    return this.http.get(this.apiURL)
+    return this.http.get(this.apiURL, this.httpOptions)
 
   }
 }
