@@ -46,26 +46,22 @@ export class CryptoDataService {
           interval: "1d,7d,30d,365d",
           convert: "EUR",
           perpage: "30"
-        }).subscribe(
-          (response) => {
-            this.searched = response
-            console.log("1 parameter searched\n")
-          },
-          (error) => console.warn("Error - Search Params Wrong\n" + error)
-        )
+        }).subscribe({
+          next: (value) => { this.searched = value },
+          error: (error) => console.warn('Search Params Wrong' + error),
+          complete: () => console.info('Get Data Complete!')
+        })
         break
       case 2: // ----------------------------------------- 2 Parameters
         this.getCryptocurrenciesData({
           currencies: _currency,
           interval: "1d,7d,30d,365d",
           convert: _convert,
-        }).subscribe(
-          (response) => {
-            this.searched = response
-            console.log("2 parameters searched\n")
-          },
-          (error) => console.warn("Error - Search Params Wrong\n" + error)
-        )
+        }).subscribe({
+          next: (value) => { this.searched = value },
+          error: (error) => console.warn('Search Params Wrong' + error),
+          complete: () => console.info('Get Data Complete!')
+        })
         
     }
     

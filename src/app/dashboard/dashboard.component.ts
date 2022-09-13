@@ -29,227 +29,101 @@ export class DashboardComponent implements OnInit {
 
   options: any // Used to define the options on the chart
 
-  // Get - Last Day Data
-  getLastDayData() {
-    this.dataService.getCryptocurrenciesData({ currencies: 'BTC,ETH,ADA,DOT', interval: '1d', convert: 'EUR'}).subscribe(
-      (response) => {
-        this.lastDayData = response
-        console.log(response)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-
-  // Get - Latest 50 top Cryptocurrencies data
-  getLatestData() {
-    this.dataService.getCryptocurrenciesData({ interval: '1d', convert: 'EUR', perpage: '50' }).subscribe(
-      (response) => {
-        this.latestData = response
-        console.log(response)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-
-  // Get - BTC data
-  getBTCData() {
-    this.dataService.getCryptocurrenciesData({ currencies: 'BTC', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
-      (response) => {
-          this.btcData = response
-          console.log(response)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-
-  // Get - ETH data
-  getETHData() {
-    this.dataService.getCryptocurrenciesData({ currencies: 'ETH', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
-      (response) => {
-          this.ethData = response
-          console.log(response)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-
-  // Get - ADA data
-  getADAData() {
-    this.dataService.getCryptocurrenciesData({ currencies: 'ADA', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
-      (response) => {
-          this.adaData = response
-          console.log(response)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-
-  // Get - DOT data
-  getDOTData() {
-    this.dataService.getCryptocurrenciesData({ currencies: 'DOT', interval: '1d,7d,30d,365d', convert: 'EUR'}).subscribe(
-      (response) => {
-          this.dotData = response
-          console.log(response)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-
-  // Draw BTC Chart
-  drawBTCChart() {
-    this._btcData = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Price Change',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ this.btcData[0]["365d"].price_change, 
-            this.btcData[0]["30d"].price_change, 
-            this.btcData[0]["7d"].price_change, 
-            this.btcData[0]["1d"].price_change 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          data: [ this.btcData[0]["365d"].price_change_pct * 100, 
-            this.btcData[0]["30d"].price_change_pct * 100, 
-            this.btcData[0]["7d"].price_change_pct * 100, 
-            this.btcData[0]["1d"].price_change_pct * 100 
-          ]
-        }
-      ]
-    }
-  }
-
-  // Draw ETH Chart
-  drawETHChart() {
-    this._ethData = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Price Change',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ this.ethData[0]["365d"].price_change, 
-            this.ethData[0]["30d"].price_change, 
-            this.ethData[0]["7d"].price_change, 
-            this.ethData[0]["1d"].price_change 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          data: [ this.ethData[0]["365d"].price_change_pct * 100, 
-            this.ethData[0]["30d"].price_change_pct * 100, 
-            this.ethData[0]["7d"].price_change_pct * 100, 
-            this.ethData[0]["1d"].price_change_pct * 100 
-          ]
-        }
-      ]
-    }
-  }
-
-  // Draw ADA Chart
-  drawADAChart() {
-    this._adaData = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Price Change',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ this.adaData[0]["365d"].price_change, 
-            this.adaData[0]["30d"].price_change, 
-            this.adaData[0]["7d"].price_change, 
-            this.adaData[0]["1d"].price_change 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          data: [ this.adaData[0]["365d"].price_change_pct * 100, 
-            this.adaData[0]["30d"].price_change_pct * 100, 
-            this.adaData[0]["7d"].price_change_pct * 100, 
-            this.adaData[0]["1d"].price_change_pct * 100 
-          ]
-        }
-      ]
-    }
-  }
-
-  // Draw DOT Chart
-  drawDOTChart() {
-    this._dotData = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Price Change',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ this.dotData[0]["365d"].price_change, 
-            this.dotData[0]["30d"].price_change, 
-            this.dotData[0]["7d"].price_change, 
-            this.dotData[0]["1d"].price_change 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          data: [ this.dotData[0]["365d"].price_change_pct * 100, 
-            this.dotData[0]["30d"].price_change_pct * 100, 
-            this.dotData[0]["7d"].price_change_pct * 100, 
-            this.dotData[0]["1d"].price_change_pct * 100 
-          ]
-        }
-      ]
-    }
-  }
-
-  drawMarketCapChart() {
-  this._marketCapData = {
-    labels: ['Bitcoin','Ethereum','Cardano', 'Polkadot'],
-      datasets: [
-        {
-            data: [this.btcData[0].market_cap, this.ethData[0].market_cap, this.adaData[0].market_cap, this.dotData[0].market_cap],
-            backgroundColor: [
-                "#42A5F5",
-                "#66BB6A",
-                "#FFA726",
-                "#9f40e8"
-            ],
-            hoverBackgroundColor: [
-                "#64B5F6",
-                "#81C784",
-                "#FFB74D",
-                '#8434c1'
-            ]
-        }
-      ]
-    }
-  }
-
   constructor(
     private dataService: CryptoDataService,
     private themeService: ThemeChangeService
   ) { }
+
+  // Get - Function to retrieve data from Data Service
+  getData(currency?: string, interval?: string, convert?: string, perpage?: string) {
+    this.dataService.getCryptocurrenciesData({ 
+      currencies: currency, 
+      interval: interval, 
+      convert: convert, 
+      perpage: perpage}).subscribe({
+        next: (value) => { 
+          switch (currency) {
+            case undefined:
+              this.latestData = value
+              break
+            case 'BTC':
+              this.btcData = value
+              break
+            case 'ETH':
+              this.ethData = value
+              break
+            case 'ADA':
+              this.adaData = value
+              break
+            case 'DOT':
+              this.dotData = value
+              break
+            default:
+              this.lastDayData = value
+              break
+          }
+        },
+        error: (error) => console.warn('Error occurred while retrieving data!\n' + error),
+        complete: () => console.info('Get Data Complete!')
+      }
+    )
+  }
+
+  drawChart(chartData: any): object {
+    let chart = {
+      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
+      datasets: [
+        {
+          label: 'Price Change',
+          borderColor: "#0998e5",
+          tension: .4,
+          data: [ chartData[0]["365d"].price_change, 
+            chartData[0]["30d"].price_change, 
+            chartData[0]["7d"].price_change, 
+            chartData[0]["1d"].price_change 
+          ]
+        },
+        {
+          label: 'Price Change %',
+          borderColor: "#25b20c",
+          tension: .4,
+          data: [ chartData[0]["365d"].price_change_pct * 100, 
+            chartData[0]["30d"].price_change_pct * 100, 
+            chartData[0]["7d"].price_change_pct * 100, 
+            chartData[0]["1d"].price_change_pct * 100 
+          ]
+        }
+      ]
+    }
+    return chart
+  }
+
+  drawMarketCapChart() : void {
+  this._marketCapData = {
+    labels: ['Bitcoin','Ethereum','Cardano', 'Polkadot'],
+      datasets: [
+        {
+          data: [this.btcData[0].market_cap, 
+            this.ethData[0].market_cap, 
+            this.adaData[0].market_cap, 
+            this.dotData[0].market_cap
+          ],
+          backgroundColor: [
+            "#42A5F5",
+            "#66BB6A",
+            "#FFA726",
+            "#9f40e8"
+          ],
+          hoverBackgroundColor: [
+            "#64B5F6",
+            "#81C784",
+            "#FFB74D",
+            '#8434c1'
+          ]
+        }
+      ]
+    }
+  }
 
   // On Init
   ngOnInit(): void {
@@ -257,44 +131,38 @@ export class DashboardComponent implements OnInit {
     this.options = this.themeService.options
 
     /**
-     *  Sleeping 1,5 Second and 1 second after each consecutive request 
+     *  Sleeping 1,250 Seconds after each consecutive request 
      *  Bypassing the API 1rps (Request per Second)
-     *  For each Get request the corresponding chart is drawn
      */
-
-    this.getBTCData()
+    this.getData('BTC', '1d,7d,30d,365d', 'EUR', undefined)
     setTimeout(() => {
-      this.getLastDayData()
-    }, 1500)
-
-    setTimeout(() => {
-      this.getLatestData()
-    }, 3000)
+      this.getData('BTC,ETH,ADA,DOT', '1d', 'EUR', undefined)
+    }, 1250)
 
     setTimeout(() => {
-      this.getETHData()
-    }, 4500)
+      this.getData(undefined, '1d', 'EUR', '50')
+    }, 2500)
 
     setTimeout(() => {
-      this.drawETHChart()
-    }, 6000)
+      this.getData('ETH', '1d,7d,30d,365d', 'EUR', undefined)
+    }, 3750)
 
     setTimeout(() => {
-      this.getADAData()    
-    }, 7500)
+      this.getData('ADA', '1d,7d,30d,365d', 'EUR', undefined)    
+    }, 5000)
   
     setTimeout(() => {
-      this.getDOTData()
-    }, 9000)
+      this.getData('DOT', '1d,7d,30d,365d', 'EUR', undefined)
+    }, 6250)
 
     // After data is loaded correctly, charts are drawn
     setTimeout(() => {
-      this.drawBTCChart()
-      this.drawETHChart()
-      this.drawADAChart()
-      this.drawDOTChart()
+      this._btcData = this.drawChart(this.btcData)
+      this._ethData = this.drawChart(this.ethData)
+      this._adaData = this.drawChart(this.adaData)
+      this._dotData = this.drawChart(this.dotData)
       this.drawMarketCapChart()
       this.show = true
-    }, 10000)
+    }, 7500)
   }
 }
