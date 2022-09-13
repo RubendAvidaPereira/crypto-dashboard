@@ -23,45 +23,6 @@ export class BitcoinComponent implements OnInit {
   _btcData: any
   options: any
 
-  drawBTCChart() {
-    this._btcData = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Market Cap Change %',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ this.btcData[0]["365d"].market_cap_change_pct * 100, 
-            this.btcData[0]["30d"].market_cap_change_pct * 100, 
-            this.btcData[0]["7d"].market_cap_change_pct * 100, 
-            this.btcData[0]["1d"].market_cap_change_pct * 100 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          borderDash: [3, 3],
-          data: [ this.btcData[0]["365d"].price_change_pct * 100, 
-            this.btcData[0]["30d"].price_change_pct * 100, 
-            this.btcData[0]["7d"].price_change_pct * 100, 
-            this.btcData[0]["1d"].price_change_pct * 100 
-          ]
-        },
-        {
-          label: 'Volume Change %',
-          borderColor: "#e09900",
-          tension: .4,
-          data: [ this.btcData[0]["365d"].volume_change_pct * 100, 
-            this.btcData[0]["30d"].volume_change_pct * 100, 
-            this.btcData[0]["7d"].volume_change_pct * 100, 
-            this.btcData[0]["1d"].volume_change_pct * 100 
-          ]
-        }
-      ]
-    }
-  }
-
   // Get - Bitcoin Data
   getBitcoinData() {
     this.dataService.getCryptocurrenciesData({ currencies: "BTC", interval: "1d,7d,30d,365d", convert: "EUR" }).subscribe(
@@ -75,39 +36,31 @@ export class BitcoinComponent implements OnInit {
     )
   }
 
-  // Create values
-  createValues() {
-    for (let data of this.btcData){
-      this.price_change_pct_1d = (data["1d"].price_change_pct * 100).toFixed(2)
-
-      this.price_change_pct_7d = (data["7d"].price_change_pct * 100).toFixed(2)
-
-      this.price_change_pct_30d = (data["30d"].price_change_pct * 100).toFixed(2)
-
-      this.price_change_pct_365d = (data["365d"].price_change_pct * 100).toFixed(2)
-    }
-  }
-
   constructor(
     private dataService: CryptoDataService,
-    private themeChange: ThemeChangeService) { }
+    private themeChange: ThemeChangeService
+  ) { }
 
   ngOnInit(): void {
 
+    // Chart Options
     this.options = this.themeChange.options
 
     // Get - data
     this.getBitcoinData()
-    setTimeout(() => {
-      this.createValues()
-    }, 1500)
-
-    // Draw Chart
-    setTimeout(() => {
-      this.drawBTCChart()
-      this.show = true
-    }, 3000)
     
-  }
+    setTimeout(() => {
+      
+      // Values
+      let values = this.dataService.createValues(this.btcData)
+      this.price_change_pct_1d = Object(values)["one_day"]
+      this.price_change_pct_7d = Object(values)["seven_days"]
+      this.price_change_pct_30d = Object(values)["monthly"]
+      this.price_change_pct_365d = Object(values)["yearly"]
 
+      // Chart
+      this._btcData = this.dataService.drawChart(this.btcData, 'bitcoin-component')
+      this.show = true
+    }, 1500)
+  }
 }

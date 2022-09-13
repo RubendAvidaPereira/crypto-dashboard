@@ -40,14 +40,13 @@ export class AppMenuComponent implements OnInit {
     this.themeService.switchTheme(theme);
   }
 
+  // On search bar submit, it sends the request to crypto data service
   onSubmit(searchText: string){
     this.notLoading = false
     this.searchBar = searchText
     this.cryptoDataService.getSearchData(this.searchBar)
-    console.log(this.notLoading)
     setTimeout(() => {
       this.notLoading = true
-      console.log(this.notLoading)
     }, 2750)
   }
 

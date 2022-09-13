@@ -29,11 +29,6 @@ export class DashboardComponent implements OnInit {
 
   options: any // Used to define the options on the chart
 
-  constructor(
-    private dataService: CryptoDataService,
-    private themeService: ThemeChangeService
-  ) { }
-
   // Get - Function to retrieve data from Data Service
   getData(currency?: string, interval?: string, convert?: string, perpage?: string) {
     this.dataService.getCryptocurrenciesData({ 
@@ -69,35 +64,6 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  drawChart(chartData: any): object {
-    let chart = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Price Change',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ chartData[0]["365d"].price_change, 
-            chartData[0]["30d"].price_change, 
-            chartData[0]["7d"].price_change, 
-            chartData[0]["1d"].price_change 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          data: [ chartData[0]["365d"].price_change_pct * 100, 
-            chartData[0]["30d"].price_change_pct * 100, 
-            chartData[0]["7d"].price_change_pct * 100, 
-            chartData[0]["1d"].price_change_pct * 100 
-          ]
-        }
-      ]
-    }
-    return chart
-  }
-
   drawMarketCapChart() : void {
   this._marketCapData = {
     labels: ['Bitcoin','Ethereum','Cardano', 'Polkadot'],
@@ -125,9 +91,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // On Init
+  constructor(
+    private dataService: CryptoDataService,
+    private themeService: ThemeChangeService
+  ) { }
+
   ngOnInit(): void {
     
+    // Chart Options
     this.options = this.themeService.options
 
     /**
@@ -157,10 +128,11 @@ export class DashboardComponent implements OnInit {
 
     // After data is loaded correctly, charts are drawn
     setTimeout(() => {
-      this._btcData = this.drawChart(this.btcData)
-      this._ethData = this.drawChart(this.ethData)
-      this._adaData = this.drawChart(this.adaData)
-      this._dotData = this.drawChart(this.dotData)
+      let component = 'dashboard-component'
+      this._btcData = this.dataService.drawChart(this.btcData, component)
+      this._ethData = this.dataService.drawChart(this.ethData, component)
+      this._adaData = this.dataService.drawChart(this.adaData, component)
+      this._dotData = this.dataService.drawChart(this.dotData, component)
       this.drawMarketCapChart()
       this.show = true
     }, 7500)

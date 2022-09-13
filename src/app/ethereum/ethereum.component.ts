@@ -7,6 +7,7 @@ import { CryptoDataService } from '../shared/services/crypto-data.service';
   templateUrl: './ethereum.component.html',
   styleUrls: ['./ethereum.component.css']
 })
+
 export class EthereumComponent implements OnInit {
 
   //  ETH Data
@@ -28,7 +29,7 @@ export class EthereumComponent implements OnInit {
     private dataService: CryptoDataService
   ) { }
 
-  // Get - Eth data
+  // Get - Ethereum data
   getETHData() {
     this.dataService.getCryptocurrenciesData({ currencies: "ETH", interval: "1d,7d,30d,365d", convert: "EUR" }).subscribe(
       (response) => {
@@ -41,74 +42,27 @@ export class EthereumComponent implements OnInit {
     )
   }
 
-  // Draw Chart
-  drawETHChart() {
-    this._ethData = {
-      labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
-      datasets: [
-        {
-          label: 'Market Cap Change %',
-          borderColor: "#0998e5",
-          tension: .4,
-          data: [ this.ethData[0]["365d"].market_cap_change_pct * 100, 
-            this.ethData[0]["30d"].market_cap_change_pct * 100, 
-            this.ethData[0]["7d"].market_cap_change_pct * 100, 
-            this.ethData[0]["1d"].market_cap_change_pct * 100 
-          ]
-        },
-        {
-          label: 'Price Change %',
-          borderColor: "#25b20c",
-          tension: .4,
-          borderDash: [3, 3],
-          data: [ this.ethData[0]["365d"].price_change_pct * 100, 
-            this.ethData[0]["30d"].price_change_pct * 100, 
-            this.ethData[0]["7d"].price_change_pct * 100, 
-            this.ethData[0]["1d"].price_change_pct * 100 
-          ]
-        },
-        {
-          label: 'Volume Change %',
-          borderColor: "#e09900",
-          tension: .4,
-          data: [ this.ethData[0]["365d"].volume_change_pct * 100, 
-            this.ethData[0]["30d"].volume_change_pct * 100, 
-            this.ethData[0]["7d"].volume_change_pct * 100, 
-            this.ethData[0]["1d"].volume_change_pct * 100 
-          ]
-        }
-      ]
-    }
-  }
-
-  // Create values
-  createValues() {
-    for (let data of this.ethData){
-      this.price_change_pct_1d = (data["1d"].price_change_pct * 100).toFixed(2)
-
-      this.price_change_pct_7d = (data["7d"].price_change_pct * 100).toFixed(2)
-
-      this.price_change_pct_30d = (data["30d"].price_change_pct * 100).toFixed(2)
-
-      this.price_change_pct_365d = (data["365d"].price_change_pct * 100).toFixed(2)
-    }
-  }
-
   ngOnInit(): void {
     
+    // Chart Options
     this.options = this.themeChange.options
 
     // Get - data
     this.getETHData()
+    
     setTimeout(() => {
-      this.createValues()
-    }, 1500)
 
-    // Draw Chart
-    setTimeout(() => {
-      this.drawETHChart()
+      // Values
+      let values = this.dataService.createValues(this.ethData)
+      this.price_change_pct_1d = Object(values)["one_day"]
+      this.price_change_pct_7d = Object(values)["seven_days"]
+      this.price_change_pct_30d = Object(values)["monthly"]
+      this.price_change_pct_365d = Object(values)["yearly"]
+
+      // Chart
+      this._ethData = this.dataService.drawChart(this.ethData, 'ethereum-component')
       this.show = true
-    }, 3000)
+    }, 1500)
   }
 
 }

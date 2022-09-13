@@ -72,6 +72,126 @@ export class CryptoDataService {
     }, 1000)
   }
 
+  /**
+   * Function that handles the data received and draws the chart needed
+   * @param chartData data that will be used to define the charts
+   * @returns the dataset for the chart to be drawned
+   */
+   drawChart(chartData: any, component: string) {
+    let chart: any
+    let searchedChart: any[] = []
+    switch (component){
+      case 'dashboard-component':
+        chart = {
+          labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
+          datasets: [
+            {
+              label: 'Price Change',
+              borderColor: "#0998e5",
+              tension: .4,
+              data: [ chartData[0]["365d"].price_change, 
+                chartData[0]["30d"].price_change, 
+                chartData[0]["7d"].price_change, 
+                chartData[0]["1d"].price_change 
+              ]
+            },
+            {
+              label: 'Price Change %',
+              borderColor: "#25b20c",
+              tension: .4,
+              data: [ chartData[0]["365d"].price_change_pct * 100, 
+                chartData[0]["30d"].price_change_pct * 100, 
+                chartData[0]["7d"].price_change_pct * 100, 
+                chartData[0]["1d"].price_change_pct * 100 
+              ]
+            }
+          ]
+        }
+        break
+      case 'bitcoin-component':
+      case 'ethereum-component':
+      case 'searched-component':
+        for (let data of chartData) {
+          chart = {
+            labels: ["365 Days", "30 Days", "7 Days", "1 Days"],
+            datasets: [
+              {
+                label: 'Market Cap Change %',
+                borderColor: "#0998e5",
+                tension: .4,
+                data: [ data["365d"].market_cap_change_pct * 100, 
+                  data["30d"].market_cap_change_pct * 100, 
+                  data["7d"].market_cap_change_pct * 100, 
+                  data["1d"].market_cap_change_pct * 100 
+                ]
+              },
+              {
+                label: 'Price Change %',
+                borderColor: "#25b20c",
+                tension: .4,
+                borderDash: [3, 3],
+                data: [ data["365d"].price_change_pct * 100, 
+                  data["30d"].price_change_pct * 100, 
+                  data["7d"].price_change_pct * 100, 
+                  data["1d"].price_change_pct * 100 
+                ]
+              },
+              {
+                label: 'Volume Change %',
+                borderColor: "#e09900",
+                tension: .4,
+                data: [ data["365d"].volume_change_pct * 100, 
+                  data["30d"].volume_change_pct * 100, 
+                  data["7d"].volume_change_pct * 100, 
+                  data["1d"].volume_change_pct * 100 
+                ]
+              }
+            ]
+          }
+          if (chartData.length > 1){
+            searchedChart.push(chart)
+          }
+        }
+      }
+      if (component === 'searched-component'){
+        return searchedChart
+      }
+      else {
+        return chart
+      }
+  }
+
+  /**
+   * 
+   * @param values the data that is used to manipulate and return specific values
+   * @returns the values used for the knobs
+   */
+  createValues(values: any) : object {
+    
+    // Values
+    let price_change_pct_1d: string[] = []
+    let price_change_pct_7d: string[] = []
+    let price_change_pct_30d: string[] = []
+    let price_change_pct_365d: string[] = []
+
+    for (let data of values){
+      price_change_pct_1d.push((data["1d"].price_change_pct * 100).toFixed(2))
+
+      price_change_pct_7d.push((data["7d"].price_change_pct * 100).toFixed(2))
+
+      price_change_pct_30d.push((data["30d"].price_change_pct * 100).toFixed(2))
+
+      price_change_pct_365d.push((data["365d"].price_change_pct * 100).toFixed(2))
+    }
+
+    return {
+      one_day: price_change_pct_1d,
+      seven_days: price_change_pct_7d,
+      monthly: price_change_pct_30d,
+      yearly: price_change_pct_365d
+    }
+  }
+
   /** Get - Crypto Data
    * 
    * @param currencies Comma separated list of cryptocurrencies IDs. (BTC,ETH,ADA,DOT),
