@@ -3,7 +3,7 @@ name: Crypto Dashboard CI
 on:
   push:
     branches:
-      - ci-cd # Branch setup, for each new push the job is triggered
+      - main # Branch setup, for each new push the job is triggered
 
 jobs:
   ci:
