@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { EthereumComponent } from './ethereum/ethereum.component';
 import { SearchedCryptoComponent } from './searched-crypto/searched-crypto.component';
+import { FooterComponent } from './footer/footer.component';
 
 // Styling with PrimeNG Modules
 import { ButtonModule } from 'primeng/button';
@@ -29,6 +30,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     DashboardComponent,
     BitcoinComponent,
     EthereumComponent,
-    SearchedCryptoComponent
+    SearchedCryptoComponent,
+    FooterComponent
   ],
   imports: [
     // Required Modules
@@ -61,7 +64,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     DividerModule,
     InputTextModule,
     TooltipModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ChipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

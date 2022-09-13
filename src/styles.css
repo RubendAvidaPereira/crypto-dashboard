@@ -16,3 +16,8 @@ body .p-component
   background-color: transparent !important;
   color: #ffc107 !important;
 }
+
+:host ::ng-deep .p-chip.custom-chip {
+  background: var(--primary-color);
+  color: var(--primary-color-text);
+}

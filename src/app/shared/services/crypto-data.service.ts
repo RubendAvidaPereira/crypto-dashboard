@@ -45,7 +45,6 @@ export class CryptoDataService {
           currencies: _currency,
           interval: "1d,7d,30d,365d",
           convert: "EUR",
-          perpage: "30"
         }).subscribe({
           next: (value) => { this.searched = value },
           error: (error) => console.warn('Search Params Wrong' + error),
@@ -148,7 +147,7 @@ export class CryptoDataService {
               }
             ]
           }
-          if (chartData.length > 1){
+          if (chartData.length >= 1){
             searchedChart.push(chart)
           }
         }

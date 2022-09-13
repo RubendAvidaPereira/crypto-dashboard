@@ -26,16 +26,16 @@
                     </div>
                 </div>
 
-                <p-divider align="right" type="dashed">
+                <p-divider align="right">
                     <div class="inline-flex align-items-center">
                         <i class="fa-solid fa-coins"></i>
                     </div>
                 </p-divider>
 
-                <!-- + Info in Bitcoin data -->
+                <!-- + Info -->
                 <div class="grid py-2">
                     <div class="col-12 md:col-12 lg:col-6">
-                        <div class="surface-card shadow-2 border-round p-3">
+                        <div class="surface-card border-round p-3">
                             <div class="grid">
                                 <div class="col-4 text-center pt-8">
                                     <img alt="Coin Logo" class="w-7 h-7" src="{{ search.logo_url }}">
@@ -221,7 +221,7 @@
 
                     <!-- Chart -->
                     <div class="col-12 md:col-12 lg:col-6">
-                        <div class="surface-card shadow-2 border-round p-3">
+                        <div class="surface-card border-round p-3">
                             <p-chart type="line" [data]="_searched[i]" [options]="options" height="450px"></p-chart>
                         </div>
                     </div>
