@@ -35,13 +35,12 @@
         <div class="col-12 md:col-12 lg:col-6">
             <div class="surface-card shadow-4 border-round p-3">
                 <div class="grid">
-                    <div class="col-4 text-center pt-8">
+                    <div class="sm:col-12 md:col-4 lg:col-4 text-center pt-8">
                         <img alt="Bitcoin Logo" class="w-7 h-7" src="{{ btcData[0].logo_url }}">
                         <h3>Bitcoin Information</h3>
                         <h5 class="text-700">Prices & Changes</h5>
                     </div>
-                    <p-divider layout="vertical"></p-divider>
-                    <div class="col-7 line-height-4">
+                    <div class="sm:col-12 md:col-4 lg:col-8 line-height-4">
                         <ul class="list-none">
                             <li><strong>Market Cap:</strong> {{ btcData[0].market_cap | currency:"EUR" }}</li>
                             <li><strong>Current Price:</strong> {{ btcData[0].price | currency:"EUR" }}</li>
